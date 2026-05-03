@@ -3,29 +3,29 @@
 import FirebaseFirestore
 import Foundation
 
-public enum ProjectCollection {
-    public static let name = "projects"
+public enum DomainCollection {
+    public static let name = "domains"
 
     public static func documentPath(_ id: String) -> String {
-        "projects/\(id)"
+        "domains/\(id)"
     }
 }
 
-public enum ProjectFields {
+public enum DomainFields {
     public static let id = "id"
     public static let title = "title"
     public static let description = "description"
-    public static let epics = "epics"
+    public static let topics = "topics"
     public static let iconUrl = "iconUrl"
     public static let createdAt = "createdAt"
     public static let updatedAt = "updatedAt"
 }
 
-public struct Project: Codable, Identifiable, Sendable {
+public struct Domain: Codable, Identifiable, Sendable {
     @DocumentID public var id: String?
     public var title: String
     public var description: String
-    public var epics: [Epic]
+    public var topics: [Topic]
     public var iconUrl: String?
     @ServerTimestamp public var createdAt: Date?
     @ServerTimestamp public var updatedAt: Date?
@@ -33,23 +33,23 @@ public struct Project: Codable, Identifiable, Sendable {
     public init(
         title: String,
         description: String,
-        epics: [Epic] = [],
+        topics: [Topic] = [],
         iconUrl: String? = nil
     ) {
         self.title = title
         self.description = description
-        self.epics = epics
+        self.topics = topics
         self.iconUrl = iconUrl
     }
 }
 
-public enum EpicFields {
+public enum TopicFields {
     public static let id = "id"
     public static let title = "title"
     public static let imageUrl = "imageUrl"
 }
 
-public struct Epic: Codable, Identifiable, Sendable {
+public struct Topic: Codable, Identifiable, Sendable {
     public var id: String
     public var title: String
     public var imageUrl: String
