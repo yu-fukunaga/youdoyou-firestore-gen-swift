@@ -13,8 +13,8 @@ public enum ActivityCollection {
 
 public enum ActivityFields {
     public static let id = "id"
-    public static let projectId = "projectId"
-    public static let epicId = "epicId"
+    public static let domainId = "domainId"
+    public static let topicId = "topicId"
     public static let content = "content"
     public static let startedAt = "startedAt"
     public static let endedAt = "endedAt"
@@ -27,8 +27,8 @@ public enum ActivityFields {
 
 public struct Activity: Codable, Identifiable, Sendable {
     @DocumentID public var id: String?
-    public var projectId: String
-    public var epicId: String
+    public var domainId: String
+    public var topicId: String
     public var content: String
     public var startedAt: Date
     public var endedAt: Date
@@ -39,8 +39,8 @@ public struct Activity: Codable, Identifiable, Sendable {
     @ServerTimestamp public var updatedAt: Date?
 
     public init(
-        projectId: String,
-        epicId: String,
+        domainId: String,
+        topicId: String,
         content: String,
         startedAt: Date,
         endedAt: Date,
@@ -48,8 +48,8 @@ public struct Activity: Codable, Identifiable, Sendable {
         userName: String,
         userIcon: String
     ) {
-        self.projectId = projectId
-        self.epicId = epicId
+        self.domainId = domainId
+        self.topicId = topicId
         self.content = content
         self.startedAt = startedAt
         self.endedAt = endedAt
